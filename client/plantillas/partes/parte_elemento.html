@@ -1,6 +1,10 @@
 <template name="parteElemento">
       <button type="button" class="list-group-item"><strong>{{alumno}}</strong>
          impuesto por <strong>{{profesor}}</strong>
-         {{#if gravedad leve}}<span class="label label-success">Leve</span>{{/if}}
+         <span class="label
+         {{#if leve}}label-success{{/if}}
+         {{#if grave}}label-warning{{/if}}
+         {{#if muygrave}}label-danger{{/if}}
+         ">{{gravedad}}</span>
        </button>
 </template>

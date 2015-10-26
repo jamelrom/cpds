@@ -1,20 +1,30 @@
 if (Meteor.users.find().count() === 0) {
+  var adminid = Meteor.users.insert({
+    username: 'admin',
+    profile: { nombre: 'Administrador', perfil:'admin' }
+  });
+  Accounts.setPassword(adminid, 'admin');
+
   var jefeid = Meteor.users.insert({
     username: 'jefe',
     profile: { nombre: 'Jefe', perfil:'Jefe Estudios' }
   });
   Accounts.setPassword(jefeid, 'jefe');
-}
 
-if(Partes.find().count() === 0) {
+  var franid = Meteor.users.insert({
+    username: 'fran',
+    profile: { nombre: 'Fran Melendo', perfil:'tutor' }
+  });
+  Accounts.setPassword(franid, 'fran');
+
     Partes.insert({
       curso_id: '1',
       curso: '1º ESO A',
       alumno_id: '1',
       alumno: 'Francisco Gómez Gonzalez',
-      profesor_id: '1',
+      profesor_id: franid,
       profesor: 'Francisco Javier Melendo Roman',
-      gravedad: 'leve',
+      gravedad: 'Leve',
       comentario: 'El niño ha tirado un papel al suelo'
     });
 
@@ -25,7 +35,7 @@ if(Partes.find().count() === 0) {
       alumno: 'Antonia Garcia Gonzalez',
       profesor_id: '1',
       profesor: 'Rosa Calvo',
-      gravedad: 'grave',
+      gravedad: 'Grave',
       comentario: 'El niño ha tirado un papel a la cara del compañero'
     });
 
@@ -36,7 +46,7 @@ if(Partes.find().count() === 0) {
       alumno: 'Ermenegildo Parras',
       profesor_id: '1',
       profesor: 'Marisa Perula',
-      gravedad: 'muy grave',
+      gravedad: 'Muy Grave',
       comentario: 'El niño ha pegado a lotro compañero'
     });
 }
