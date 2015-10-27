@@ -17,8 +17,24 @@ if (Meteor.users.find().count() === 0) {
   });
   Accounts.setPassword(franid, 'fran');
 
+  var virgiid = Meteor.users.insert({
+    username: 'virgi',
+    profile: { nombre: 'Virginia Gonzalez', perfil:'profesor' }
+  });
+  Accounts.setPassword(virgiid, 'virgi');
+
+  var eso1aid= Cursos.insert({
+    curso: '1º ESO A',
+    tutor: franid
+  });
+  var eso1bid= Cursos.insert({
+    curso: '1º ESO B',
+    tutor: jefeid
+  });
+
+
     Partes.insert({
-      curso_id: '1',
+      curso_id: eso1aid,
       curso: '1º ESO A',
       alumno_id: '1',
       alumno: 'Francisco Gómez Gonzalez',
@@ -29,19 +45,19 @@ if (Meteor.users.find().count() === 0) {
     });
 
     Partes.insert({
-      curso_id: '1',
+      curso_id: eso1aid,
       curso: '1º ESO B',
       alumno_id: '1',
       alumno: 'Antonia Garcia Gonzalez',
-      profesor_id: '1',
-      profesor: 'Rosa Calvo',
+      profesor_id: 'virgiid',
+      profesor: 'Virginia Gonzalez',
       gravedad: 'Grave',
       comentario: 'El niño ha tirado un papel a la cara del compañero'
     });
 
     Partes.insert({
-      curso_id: '1',
-      curso: '2º ESO A',
+      curso_id: eso1bid,
+      curso: '1º ESO A',
       alumno_id: '1',
       alumno: 'Ermenegildo Parras',
       profesor_id: '1',
