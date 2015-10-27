@@ -1,12 +1,12 @@
 <template name="parteElemento">
-      <button type="button" class="list-group-item">
+      <a type="button" class="list-group-item" href="{{pathFor 'partePagina'}}">
          <span class="label
          {{#if leve}}label-success{{/if}}
          {{#if grave}}label-warning{{/if}}
          {{#if muygrave}}label-danger{{/if}}
          ">{{gravedad}}</span>
-         <strong>{{curso}}</strong> a 
+         <strong>{{curso}}</strong> a
          <strong>{{alumno}}</strong>
             impuesto por <strong>{{profesor}}</strong>
-       </button>
+       </a>
 </template>
