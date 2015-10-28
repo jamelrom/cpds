@@ -1,4 +1,5 @@
 if (Meteor.users.find().count() === 0) {
+  //PROFESORES
   var adminid = Meteor.users.insert({
     username: 'admin',
     profile: { nombre: 'Administrador', perfil:'admin' }
@@ -22,7 +23,7 @@ if (Meteor.users.find().count() === 0) {
     profile: { nombre: 'Virginia Gonzalez', perfil:'profesor' }
   });
   Accounts.setPassword(virgiid, 'virgi');
-
+//CURSOS
   var eso1aid= Cursos.insert({
     curso: '1º ESO A',
     tutor: franid
@@ -31,13 +32,17 @@ if (Meteor.users.find().count() === 0) {
     curso: '1º ESO B',
     tutor: jefeid
   });
-
-
+//ALUMNOS
+  var alumno1=Alumnos.insert({
+    nombre: 'Francisco Gómez Gonzalez',
+    curso: eso1aid
+  });
+//PARTES
     Partes.insert({
       curso_id: eso1aid,
       curso: '1º ESO A',
-      alumno_id: '1',
-      alumno: 'Francisco Gómez Gonzalez',
+      alumno_id: alumno1,
+      alumno: Alumnos.findOne(alumno1).nombre,
       profesor_id: franid,
       profesor: 'Francisco Javier Melendo Roman',
       gravedad: 'Leve',
