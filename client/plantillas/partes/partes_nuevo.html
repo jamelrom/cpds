@@ -1,0 +1,23 @@
+<template name="partesNuevo">
+  <div class="list-group">
+    <center><h3>Selecciona un curso</h3></center>
+    {{#each cursos}}
+      {{> cursoElemento}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="partesNuevoCurso">
+  <div class="list-group">
+    <center><h3>Selecciona un alumno</h3></center>
+    {{#each alumnos}}
+      {{> alumnoElemento}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="partesNuevoCursoAlumno">
+  <div class="list-group">
+    {{curso.curso}} - {{alumno.nombre}}
+  </div>
+</template>
