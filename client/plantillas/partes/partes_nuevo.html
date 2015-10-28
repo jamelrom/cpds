@@ -1,10 +1,11 @@
 <template name="partesNuevo">
-  <div class="list-group">
+<center>  <div class="list-group">
     <center><h3>Selecciona un curso</h3></center>
     {{#each cursos}}
       {{> cursoElemento}}
     {{/each}}
   </div>
+</center>
 </template>
 
 <template name="partesNuevoCurso">
@@ -17,7 +18,52 @@
 </template>
 
 <template name="partesNuevoCursoAlumno">
-  <div class="list-group">
-    {{curso.curso}} - {{alumno.nombre}}
+  <div class="btn-group" role="group" >
+    <button type="button" class="btn btn-default disabled">{{curso.curso}}</button>
+    <button type="button" class="btn btn-default disabled" id="grave">{{alumno.nombre}}</button>
   </div>
+
+  <div class="panel panel-default">
+  <div class="panel-body">
+  <form role="form">
+
+  <label class="control-label" for="comentario">Gravedad:</label>
+    <div class="btn-group" data-toggle="buttons">
+      <label class="btn btn-primary">
+        <input type="radio" name="options" value="Leve"> Leve
+      </label>
+      <label class="btn btn-primary">
+        <input type="radio" name="options" value="Grave"> Grave
+      </label>
+      <label class="btn btn-primary">
+        <input type="radio" name="options" value="Muy Grave"> Muy Grave
+      </label>
+    </div>
+    <!--<label>
+      <input type="radio" name="options" value="leve"> Option 1
+    </label>
+    <label>
+      <input type="radio" name="options" value="grave"> Option 2
+    </label>
+    <label>
+      <input type="radio" name="options" value="muygrave"> Option 3
+    </label>-->
+
+      <div class="form-group">
+        <label class="control-label" for="comentario">Comentario:</label>
+        <div class="controls">
+          <textarea name="comentario" id="comentario" placeholder="Comentario" class="form-control" autofocus ></textarea>
+        </div>
+      </div>
+
+      <!--<div class="panel panel-default  container-fluid">
+        <div class="panel-heading">Comentario:</div>
+        <div class="panel-body">
+          <textarea autofocus ></textarea>
+        </div>
+      </div>-->
+      <input type="submit" value="Enviar" class="btn btn-primary"/>
+  </form>
+</div>
+</div>
 </template>
