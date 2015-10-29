@@ -32,6 +32,7 @@ if (Meteor.users.find().count() === 0) {
     curso: '1º ESO B',
     tutor: jefeid
   });
+
 //ALUMNOS
   var alumno1=Alumnos.insert({
     nombre: 'Francisco Gómez Gonzalez',

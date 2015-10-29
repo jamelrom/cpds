@@ -1,5 +1,5 @@
 <template name="parteElemento">
-      <a type="button" class="list-group-item" href="{{pathFor 'partePagina'}}">
+      <a type="button" class="list-group-item" data-toggle="tooltip" title="{{comentario}}" href="{{pathFor 'partePagina'}}">
          <span class="label
          {{#if leve}}label-success{{/if}}
          {{#if grave}}label-warning{{/if}}

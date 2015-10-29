@@ -1,14 +1,10 @@
 Template.partesNuevoCursoAlumno.events({
   'submit form': function(e) {
     e.preventDefault();
-    //console.log(Meteor.users.findOne(Meteor.userId()).profile.nombre);
-if($('input[name="options"]:checked', e.target).val()=='')
-  alert('Debes seleccionar una gravedad para el parte');
-
 
   var parte = {
       curso_id: this.curso._id,
-      curso: this.curso.nombre,
+      curso: this.curso.curso,
       alumno_id: this.alumno._id,
       alumno: this.alumno.nombre,
       profesor_id: Meteor.userId(),
@@ -17,7 +13,13 @@ if($('input[name="options"]:checked', e.target).val()=='')
       comentario: $(e.target).find('[name=comentario]').val()
     };
 
-    parte._id = Partes.insert(parte);
-    Router.go('partePagina', parte);
+    Meteor.call('parteInsertar', parte, function(error, resultado) {
+          if (error)
+            return alert(error.reason);
+
+          Router.go('partePagina', {_id: resultado._id});
+        });
+/*    parte._id = Partes.insert(parte);
+    Router.go('partePagina', parte);*/
   }
 });
