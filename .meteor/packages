@@ -23,3 +23,8 @@ accounts-password
 iron:router
 sacha:spin
 check
+rajit:bootstrap3-datepicker
+rajit:bootstrap3-datepicker-es
+andrasph:clockpicker
+aldeed:collection2
+alanning:roles

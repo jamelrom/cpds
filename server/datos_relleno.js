@@ -1,36 +1,35 @@
 if (Meteor.users.find().count() === 0) {
-  //PROFESORES
-  var adminid = Meteor.users.insert({
-    username: 'admin',
-    profile: { nombre: 'Administrador', perfil:'admin' }
-  });
-  Accounts.setPassword(adminid, 'admin');
+  var usuarios = [
+      {nombre:"Administrador",usuario:"admin",contrasenia:"admin",roles:['admin']},
+      {nombre:"Fran Melendo",usuario:"fran",contrasenia:"fran",roles:['tutor']},
+      {nombre:"Jefe Estudios",usuario:"jefe",contrasenia:"jefe",roles:['jefe']}
+    ];
+    var cursos=[
+      {curso:"1º ESO A",tutor:"fran"}
+    ];
+    var alumnos=[
+      {nombre:"Ermenegildo Perez",curso:"1º ESO A"}
+    ];
 
-  var jefeid = Meteor.users.insert({
-    username: 'jefe',
-    profile: { nombre: 'Jefe', perfil:'Jefe Estudios' }
-  });
-  Accounts.setPassword(jefeid, 'jefe');
-
-  var franid = Meteor.users.insert({
-    username: 'fran',
-    profile: { nombre: 'Fran Melendo', perfil:'tutor' }
-  });
-  Accounts.setPassword(franid, 'fran');
-
-  var virgiid = Meteor.users.insert({
-    username: 'virgi',
-    profile: { nombre: 'Virginia Gonzalez', perfil:'profesor' }
-  });
-  Accounts.setPassword(virgiid, 'virgi');
+//AÑADIR USUARIO
+  for (i = 0; i < usuarios.length; i++) {
+    usuarios[i].id = Accounts.createUser({
+      username: usuarios[i].usuario,
+      password: usuarios[i].contrasenia,
+      profile: { name: usuarios[i].nombre }
+    });
+    if (usuarios[i].roles.length > 0) {
+      Roles.addUsersToRoles(usuarios[i].id,usuarios[i].roles, 'default-group');
+    }
+  }
 //CURSOS
   var eso1aid= Cursos.insert({
     curso: '1º ESO A',
-    tutor: franid
+    tutor: Meteor.users.findOne({username:"fran"})._id
   });
   var eso1bid= Cursos.insert({
     curso: '1º ESO B',
-    tutor: jefeid
+    tutor: Meteor.users.findOne({username:"jefe"})._id
   });
 
 //ALUMNOS
@@ -44,7 +43,7 @@ if (Meteor.users.find().count() === 0) {
       curso: '1º ESO A',
       alumno_id: alumno1,
       alumno: Alumnos.findOne(alumno1).nombre,
-      profesor_id: franid,
+      profesor_id: Meteor.users.findOne({username:"fran"})._id,
       profesor: 'Francisco Javier Melendo Roman',
       gravedad: 'Leve',
       comentario: 'El niño ha tirado un papel al suelo'
@@ -55,7 +54,7 @@ if (Meteor.users.find().count() === 0) {
       curso: '1º ESO B',
       alumno_id: '1',
       alumno: 'Antonia Garcia Gonzalez',
-      profesor_id: 'virgiid',
+      profesor_id: Meteor.users.findOne({username:"jefe"})._id,
       profesor: 'Virginia Gonzalez',
       gravedad: 'Grave',
       comentario: 'El niño ha tirado un papel a la cara del compañero'
@@ -66,7 +65,7 @@ if (Meteor.users.find().count() === 0) {
       curso: '1º ESO A',
       alumno_id: '1',
       alumno: 'Ermenegildo Parras',
-      profesor_id: '1',
+      profesor_id: Meteor.users.findOne({username:"fran"})._id,
       profesor: 'Marisa Perula',
       gravedad: 'Muy Grave',
       comentario: 'El niño ha pegado a lotro compañero'

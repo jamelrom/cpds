@@ -1,9 +1,9 @@
 <template name="partePagina">
-  <div class="post-page page">
+  <div class="page">
     <span class="label
-    {{#if leve}}label-success{{/if}}
-    {{#if grave}}label-warning{{/if}}
-    {{#if muygrave}}label-danger{{/if}}
+    {{#if quegrave 'Leve'}}label-success{{/if}}
+    {{#if quegrave 'Grave'}}label-warning{{/if}}
+    {{#if quegrave 'Muy Grave'}}label-danger{{/if}}
     ">{{gravedad}}</span>
     <strong>{{curso}}</strong> a werwer
     <strong>{{alumno}}</strong>

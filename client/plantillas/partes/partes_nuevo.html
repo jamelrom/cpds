@@ -26,8 +26,19 @@
   <div class="panel-body">
   <form role="form">
 
-  <label class="control-label" for="comentario">Gravedad:</label>
-    <div class="btn-group" data-toggle="buttons">
+  <div class="input-group date">
+    <label class="control-label" for="fecha">Fecha:</label>
+    <input type="text" class="form-control"  id="fecha"   ><br>
+    <label class="control-label" for="hora">Hora:</label>
+    <div class="input-group clockpicker">
+      <input type="text" class="form-control" value="{{horaactual}}"  id="hora">
+      <span class="input-group-addon">
+          <span class="glyphicon glyphicon-time"></span>
+      </span>
+    </div>
+  </div>
+  <label class="control-label" for="gravedad">Gravedad:</label>
+    <div class="btn-group" data-toggle="buttons" id="gravedad">
       <label class="btn btn-primary">
         <input type="radio" name="options" value="Leve"> Leve
       </label>
@@ -38,16 +49,6 @@
         <input type="radio" name="options" value="Muy Grave"> Muy Grave
       </label>
     </div>
-    <!--<label>
-      <input type="radio" name="options" value="leve"> Option 1
-    </label>
-    <label>
-      <input type="radio" name="options" value="grave"> Option 2
-    </label>
-    <label>
-      <input type="radio" name="options" value="muygrave"> Option 3
-    </label>-->
-
       <div class="form-group">
         <label class="control-label" for="comentario">Comentario:</label>
         <div class="controls">
@@ -55,12 +56,6 @@
         </div>
       </div>
 
-      <!--<div class="panel panel-default  container-fluid">
-        <div class="panel-heading">Comentario:</div>
-        <div class="panel-body">
-          <textarea autofocus ></textarea>
-        </div>
-      </div>-->
       <input type="submit" value="Enviar" class="btn btn-primary"/>
   </form>
 </div>
