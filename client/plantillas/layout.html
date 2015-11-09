@@ -16,9 +16,17 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Partes<span class="caret"></span></a>
             <ul class="dropdown-menu">
+
               <li><a href="{{pathFor 'partesMisLista'}}/">Mis Partes</a></li>
-              <li><a href="{{pathFor 'partesCursosLista'}}/">Cursos</a></li>
-              <li><a href="#">Profesores</a></li>
+              {{#if isInRole 'jefe'}}
+                <li><a href="{{pathFor 'partesTodos'}}/">Todos los partes</a></li>
+              {{/if}}
+              {{#if isInRole 'tutor,jefe'}}
+                <li><a href="{{pathFor 'partesCursosLista'}}/">Cursos</a></li>
+              {{/if}}
+              {{#if isInRole 'jefe'}}
+                <li><a href="#">Profesores</a></li>
+              {{/if}}
               <li role="separator" class="divider"></li>
               <li><a href="{{pathFor 'partesNuevo'}}/">Añadir...</a></li>
             </ul>

@@ -1,12 +1,45 @@
 <template name="partePagina">
-  <div class="page">
-    <span class="label
-    {{#if quegrave 'Leve'}}label-success{{/if}}
-    {{#if quegrave 'Grave'}}label-warning{{/if}}
-    {{#if quegrave 'Muy Grave'}}label-danger{{/if}}
-    ">{{gravedad}}</span>
-    <strong>{{curso}}</strong> a werwer
-    <strong>{{alumno}}</strong>
-       impuesto por <strong>{{profesor}}</strong>
+    <div class="btn-group" role="group" >
+      <div class="input-group disabled">
+        <label class="control-label" for="curso">Curso:</label>
+        <button type="button" class="btn btn-default disabled" name="curso">{{curso}}</button>
+        <label class="control-label" for="alumno">Alumno:</label>
+        <button type="button" class="btn btn-default disabled" name="alumno">{{alumno}}</button>
+        <label class="control-label" for="fecha">Profesor:</label>
+        <button type="button" class="btn btn-default disabled">{{profesor}}</button>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <form role="form">
+
+        <div class="input-group date disabled">
+          <label class="control-label" for="fecha">Fecha:</label>
+          <input type="text" class="form-control" name="fecha"  id="fecha"  value="{{fechaFormateada fecha}}" disabled ><br>
+          <label class="control-label" for="idhora">Hora:</label>
+          <div class="input-group clockpicker" id="idhora">
+            <input type="text" class="form-control" value="{{horaFormateada fecha}}"  name="hora" id="hora" disabled >
+          </div>
+        </div>
+        <label class="control-label" for="gravedad">Gravedad:</label>
+        <span class="label
+        {{#if quegrave 'Leve'}}label-success{{/if}}
+        {{#if quegrave 'Grave'}}label-warning{{/if}}
+        {{#if quegrave 'Muy Grave'}}label-danger{{/if}}
+        ">{{gravedad}}</span>
+
+          <div class="form-group">
+            <label class="control-label" for="comentario">Comentario:</label>
+            <div class="controls">
+              <textarea name="comentario" id="comentario" placeholder="Comentario" value={{comentario}} class="form-control" autofocus disabled></textarea>
+            </div>
+          </div>
+
+          {{#if puedeEditar}}
+            <a href="{{pathFor 'partePaginaEditar'}}" class="btn btn-primary editar" >Editar</a>
+            <input type="submit" value="Borrar" class="btn btn-primary borrar"/>
+          {{/if}}
+      </form>
+    </div>
   </div>
-</template>
+  </template>

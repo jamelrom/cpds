@@ -1,51 +1,51 @@
 <template name="partePaginaEditar">
-
-    <div class="btn-group" role="group" >
-      <button type="button" class="btn btn-default disabled">{{curso.curso}}</button>
-      <button type="button" class="btn btn-default disabled" id="grave">{{alumno.nombre}}</button>
+  <div class="btn-group" role="group" >
+    <div class="input-group disabled">
+      <label class="control-label" for="curso">Curso:</label>
+      <button type="button" class="btn btn-default disabled" name="curso">{{curso}}</button>
+      <label class="control-label" for="alumno">Alumno:</label>
+      <button type="button" class="btn btn-default disabled" name="alumno">{{alumno}}</button>
+      <label class="control-label" for="fecha">Profesor:</label>
+      <button type="button" class="btn btn-default disabled">{{profesor}}</button>
     </div>
+  </div>
 
     <div class="panel panel-default">
     <div class="panel-body">
     <form role="form">
-
-    <label class="control-label" for="comentario">Gravedad:</label>
-      <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-primary">
-          <input type="radio" name="options" value="Leve"> Leve
-        </label>
-        <label class="btn btn-primary">
-          <input type="radio" name="options" value="Grave"> Grave
-        </label>
-        <label class="btn btn-primary">
-          <input type="radio" name="options" value="Muy Grave"> Muy Grave
-        </label>
-      </div>
-      <!--<label>
-        <input type="radio" name="options" value="leve"> Option 1
-      </label>
-      <label>
-        <input type="radio" name="options" value="grave"> Option 2
-      </label>
-      <label>
-        <input type="radio" name="options" value="muygrave"> Option 3
-      </label>-->
-
+<div class="input-group date">
+  <label class="control-label" for="fecha">Fecha:</label>
+  <input type="text" class="form-control" name="fecha"  id="fecha"  value="{{fechaFormateada fecha}}" ><br>
+  <label class="control-label" for="hora">Hora:</label>
+  <div class="input-group clockpicker" >
+    <input type="text" class="form-control" value="{{horaFormateada fecha}}"  name="hora" id="hora" >
+    <span class="input-group-addon">
+        <span class="glyphicon glyphicon-time"></span>
+    </span>
+  </div>
+</div>
+<label class="control-label" for="gravedad">Gravedad:</label>
+  <div class="btn-group" data-toggle="buttons" id="gravedad">
+    <label class="btn btn-primary">
+      <input type="radio" name="options" value="Leve" id="Leve"> Leve
+    </label>
+    <label class="btn btn-primary">
+      <input type="radio" name="options" value="Grave" id="Grave"> Grave
+    </label>
+    <label class="btn btn-primary">
+      <input type="radio" name="options" value="Muy Grave" id="MuyGrave"> Muy Grave
+    </label>
+  </div>
         <div class="form-group">
           <label class="control-label" for="comentario">Comentario:</label>
           <div class="controls">
-            <textarea name="comentario" id="comentario" placeholder="Comentario" class="form-control" autofocus ></textarea>
+            <textarea name="comentario" id="comentario" placeholder="Comentario" value={{comentario}} class="form-control" autofocus ></textarea>
           </div>
         </div>
 
-        <!--<div class="panel panel-default  container-fluid">
-          <div class="panel-heading">Comentario:</div>
-          <div class="panel-body">
-            <textarea autofocus ></textarea>
-          </div>
-        </div>-->
-        <input type="submit" value="Enviar" class="btn btn-primary"/>
+        <input type="submit" value="Editar" class="btn btn-primary editar"/>
+
     </form>
   </div>
   </div>
-</template>
+  </template>

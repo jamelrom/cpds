@@ -14,16 +14,16 @@ Meteor.publish('alumnos',function(){
     return Alumnos.find();
 });
 
-//Esta publicación es especial, por especificación, solo el jefe de estudios o el administrador de la aplicación tienen acceso
+//Esta publicación es especial, por especificación, solo el jefe de estudios tienen acceso
 //a todos los partes, el resto de usuario solo tienen acceso a sus propios partes, y a los de su tutoria si es que son tutores.
 Meteor.publish('partes', function() {
     var user = Meteor.users.findOne(this.userId);
 
-    if (user && (user.profile.perfil === 'Jefe Estudios' || user.profile.perfil === 'admin'))
+    if (user && Roles.userIsInRole(user, ['jefe']))
       return Partes.find();
-    else if (user && (user.profile.perfil === 'tutor')){
+    else if (user && Roles.userIsInRole(user, ['tutor'])){
       tutoria= Cursos.findOne({tutor: this.userId});
-      return Partes.find({curso_id: tutoria._id});
+      return Partes.find({$or: [{curso_id: tutoria._id},{profesor_id:this.userId}]});
     }
     else if(user)
       return Partes.find({profesor_id: this.userId});
