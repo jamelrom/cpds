@@ -3,6 +3,7 @@ if (Meteor.users.find().count() === 0) {
       {nombre:"Administrador",usuario:"admin",contrasenia:"admin",roles:['admin']},
       {nombre:"Fran Melendo",usuario:"fran",contrasenia:"fran",roles:['tutor']},
       {nombre:"Virginia Milan",usuario:"virgi",contrasenia:"virgi",roles:['tutor']},
+      {nombre:"Marisa González",usuario:"marisa",contrasenia:"marisa",roles:['profesor']},
       {nombre:"Jefe Estudios",usuario:"jefe",contrasenia:"jefe",roles:['jefe']}
     ];
     var cursos=[

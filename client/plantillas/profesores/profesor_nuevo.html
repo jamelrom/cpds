@@ -1,0 +1,35 @@
+<template name="profesorNuevo">
+  <form role="form">
+
+      <div class="panel panel-default">
+      <div class="panel-body">
+  <div class="input-group">
+    <label class="control-label" for="nombre">Nombre:
+      <input type="text" class="form-control" name="nombre"  id="nombre"   >
+    </label>
+    <label class="control-label" for="usuario">Usuario:
+      <input type="text" class="form-control" name="usuario"  id="usuario"   >
+    </label>
+    <label class="control-label" for="contrasenia">Contraseña:
+      <input type="text" class="form-control" name="contrasenia"  id="contrasenia"   >
+    </label>
+  </div>
+
+    <label class="control-label" for="gravedad">Tipo de usuario:</label>
+      <div class="btn-group" data-toggle="buttons" id="tipo">
+        <label class="btn btn-primary">
+          <input type="radio" name="tipo" value="profesor" id="profesor">Profesor
+        </label>
+        <label class="btn btn-primary">
+          <input type="radio" name="tipo" value="jefe"> Jefe de Estudios
+        </label>
+        <label class="btn btn-primary">
+          <input type="radio" name="tipo" value="admin"> Administrador
+        </label>
+      </div>
+
+    </div>
+    </div>
+      <input type="submit" value="Añadir usuario" class="btn btn-primary"/>
+  </form>
+</template>

@@ -30,6 +30,13 @@ Meteor.publish('partes', function() {
 
 
 });
+
+Meteor.publish('profesores', function() {
+    var user = Meteor.users.findOne(this.userId);
+
+    if (user && Roles.userIsInRole(user, ['jefe','admin']))
+      return Meteor.users.find();
+});
 /*publicaciones parciales
 return Posts.find({}, {fields: {
     date: false

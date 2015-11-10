@@ -13,7 +13,8 @@
     <div class="collapse navbar-collapse" id="navbar-colapsada">
       {{#if currentUser}}
         <ul class="nav navbar-nav">
-          <li class="dropdown">
+            {{#if isInRole 'jefe,tutor,profesor'}}
+            <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Partes<span class="caret"></span></a>
             <ul class="dropdown-menu">
 
@@ -25,12 +26,37 @@
                 <li><a href="{{pathFor 'partesCursosLista'}}/">Cursos</a></li>
               {{/if}}
               {{#if isInRole 'jefe'}}
-                <li><a href="#">Profesores</a></li>
+                <li><a href="{{pathFor 'partesProfesoresLista'}}/">Profesores</a></li>
               {{/if}}
               <li role="separator" class="divider"></li>
               <li><a href="{{pathFor 'partesNuevo'}}/">Añadir...</a></li>
             </ul>
           </li>
+            {{/if}}
+
+            {{#if isInRole 'admin'}}
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profesores<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{pathFor 'profesoresLista'}}/">Todos los profesores</a></li>
+                <li><a href="{{pathFor 'profesorNuevo'}}/">Añadir nuevo</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cursos<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{pathFor 'cursosLista'}}/">Todos los cursos</a></li>
+                <li><a href="{{pathFor 'cursosNuevo'}}/">Añadir nuevo</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Alumnos<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{pathFor 'alumnosLista'}}/">Todos los alumnos</a></li>
+                <li><a href="{{pathFor 'alumnosNuevo'}}/">Añadir nuevo</a></li>
+              </ul>
+            </li>
+            {{/if}}
         </ul>
       {{/if}}
       <ul class="nav navbar-nav navbar-right">
