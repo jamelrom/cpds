@@ -1,0 +1,29 @@
+<template name="cursoEditar">
+  <form role="form">
+
+      <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="input-group">
+          <label class="control-label" for="nombre">Nombre:
+            <input type="text" class="form-control" name="nombre"  id="nombre"  value="{{curso.curso}}" >
+          </label>
+        </div>
+        <label class="control-label"> Tutor:</label>
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" id="tutor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Tutor
+            <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              {{#each profesores}}
+                <li><a class="tutorElemento" data-id="{{_id}}" href="#">{{profile.name}}</a></li>
+              {{/each}}
+            </ul>
+        </div>
+
+    </div>
+    </div>
+    <input type="submit" value="Editar" class="btn btn-primary"/>
+    <a class="btn btn-primary borrar" href="#">Borrar</a>
+  </form>
+</template>

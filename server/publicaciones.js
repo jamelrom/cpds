@@ -19,11 +19,15 @@ Meteor.publish('alumnos',function(){
 Meteor.publish('partes', function() {
     var user = Meteor.users.findOne(this.userId);
 
-    if (user && Roles.userIsInRole(user, ['jefe']))
+    if (user && Roles.userIsInRole(user, ['jefe','admin']))
       return Partes.find();
     else if (user && Roles.userIsInRole(user, ['tutor'])){
       tutoria= Cursos.findOne({tutor: this.userId});
-      return Partes.find({$or: [{curso_id: tutoria._id},{profesor_id:this.userId}]});
+      if(tutoria) //el administrador puede haber asignado a un profesor como tutor, y aún no haberle asignado una tutoría, en ese caso esta busqueda en la base de datos fallará
+        return Partes.find({$or: [{curso_id: tutoria._id},{profesor_id:this.userId}]});
+      else
+          return Partes.find({profesor_id:this.userId});
+
     }
     else if(user)
       return Partes.find({profesor_id: this.userId});

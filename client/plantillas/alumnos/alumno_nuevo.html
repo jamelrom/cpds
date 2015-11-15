@@ -1,0 +1,27 @@
+<template name="alumnoNuevo">
+  <form role="form">
+      <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="input-group">
+          <label class="control-label" for="nombre">Nombre:
+            <input type="text" class="form-control" name="nombre"  id="nombre" >
+          </label>
+        </div>
+        <label class="control-label"> Curso:</label>
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" id="curso" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Curso
+            <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              {{#each cursos}}
+                <li><a class="cursoElemento" data-id="{{_id}}" href="#">{{curso}}</a></li>
+              {{/each}}
+            </ul>
+        </div>
+
+    </div>
+    </div>
+    <input type="submit" value="Nuevo" class="btn btn-primary"/>
+  </form>
+</template>

@@ -1,0 +1,61 @@
+<template name="sancionNueva">
+<div class="list-group">
+    <center><h3>Selecciona un curso</h3></center>
+    {{#each cursos}}
+      {{> cursoElemento}}
+    {{/each}}
+  </div>
+</template>
+<template name="sancionNuevaCurso">
+  <div class="list-group">
+    <center><h3>Selecciona un alumno</h3></center>
+    {{#each alumnos}}
+      {{> alumnoElemento}}
+    {{/each}}
+  </div>
+</template>
+<template name="sancionNuevaCursoAlumno">
+  <div class="btn-group" role="group" >
+    <button type="button" class="btn btn-default disabled">{{curso.curso}}</button>
+    <button type="button" class="btn btn-default disabled" id="grave">{{alumno.nombre}}</button>
+  </div>
+
+  <div class="panel panel-default">
+  <div class="panel-body">
+  <form role="form">
+
+  <div class="input-group date">
+    <label class="control-label" for="fechainicio">Fecha Inicio:</label>
+    <input type="text" class="form-control fecha" name="fechainicio"  id="fechainicio"   ><br>
+    <label class="control-label" for="fechafin">Fecha Fin:</label>
+    <input type="text" class="form-control fecha" name="fechafin"  id="fechafin"   ><br>
+  </div>
+    <select id='listapartes' class="selectpicker show-tick" multiple data-selected-text-format="count>0" title='Partes a sancionar...'>
+      {{#each partes}}
+        <option name="options" data-content="
+          <span class='label
+          {{#if quegrave 'Leve'}}label-success{{/if}}
+          {{#if quegrave 'Grave'}}label-warning{{/if}}
+          {{#if quegrave 'Muy Grave'}}label-danger{{/if}}
+          '>{{gravedad}}</span><strong>{{profesor}}</strong>
+             {{fechaYHoraFormateada fecha}}
+          <span class='label label-default'
+             data-toggle='tooltip' title='{{comentario}}'>Comentario...</span>
+          ">{{_id}}</option>
+      {{/each}}
+      <!--<option data-content="<span class='label label-success'>asdq</span>">Mustard</option>
+      <option>Ketchup</option>
+      <option>Barbecue</option>-->
+    </select>
+      <div class="form-group">
+        <label class="control-label" for="comentario">Comentario:</label>
+        <div class="controls">
+          <textarea name="comentario" id="comentario" placeholder="Comentario" class="form-control" autofocus ></textarea>
+        </div>
+      </div>
+
+      <input type="submit" value="Imponer sanción" class="btn btn-primary"/>
+  </form>
+</div>
+</div>
+</template>

@@ -1,17 +1,17 @@
-<template name="profesorNuevo">
+<template name="profesorEditar">
   <form role="form">
 
       <div class="panel panel-default">
       <div class="panel-body">
   <div class="input-group">
     <label class="control-label" for="nombre">Nombre:
-      <input type="text" class="form-control" name="nombre"  id="nombre"  >
+      <input type="text" class="form-control" name="nombre"  id="nombre"  value="{{profile.name}}" >
     </label>
     <label class="control-label" for="usuario">Usuario:
-      <input type="text" class="form-control" name="usuario"  id="usuario"   >
+      <input type="text" class="form-control" name="usuario"  id="usuario"  value="{{username}}" >
     </label>
     <label class="control-label" for="contrasenia">Contraseña:
-      <input type="text" class="form-control" name="contrasenia"  id="contrasenia"   >
+      <input type="text" class="form-control" placeholder="No será cambiada" name="contrasenia"  id="contrasenia"  data-toggle="tooltip" title="Si rellenas este campo la contraseña será cambiada" >
     </label>
   </div>
 
@@ -21,18 +21,19 @@
           <input type="radio" name="tipo" value="profesor" id="profesor">Profesor
         </label>
         <label class="btn btn-primary">
-          <input type="radio" name="tipo" value="profesor" id="tutor">Tutor
+          <input type="radio" name="tipo" value="tutor" id="tutor">Tutor
         </label>
         <label class="btn btn-primary">
-          <input type="radio" name="tipo" value="jefe"> Jefe de Estudios
+          <input type="radio" name="tipo" value="jefe" id="jefe"> Jefe de Estudios
         </label>
         <label class="btn btn-primary">
-          <input type="radio" name="tipo" value="admin"> Administrador
+          <input type="radio" name="tipo" value="admin" id="admin"> Administrador
         </label>
       </div>
 
     </div>
     </div>
-      <input type="submit" value="Añadir usuario" class="btn btn-primary"/>
+      <input type="submit" value="Editar" class="btn btn-primary"/>
+      <a class="btn btn-primary borrar" href="#">Borrar</a>
   </form>
 </template>
