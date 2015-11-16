@@ -42,6 +42,9 @@
             <textarea name="comentario" id="comentario" placeholder="Comentario" value={{comentario}} class="form-control" autofocus ></textarea>
           </div>
         </div>
+        {{#if sancionado}}
+          <span class="label label-danger">El parte ha sido sancionado</span><br>
+        {{/if}}
 
         <input type="submit" value="Editar" class="btn btn-primary editar"/>
 

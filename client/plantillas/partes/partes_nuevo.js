@@ -19,7 +19,8 @@ Template.partesNuevoCursoAlumno.events({
       profesor_id: Meteor.userId(),
       profesor: Meteor.users.findOne(Meteor.userId()).profile.name,
       gravedad: $('input[name="options"]:checked', e.target).val(),
-      comentario: $(e.target).find('[name=comentario]').val()
+      comentario: $(e.target).find('[name=comentario]').val(),
+      sancionado:false
     };
     //console.log(parte.gravedad);
     Meteor.call('parteInsertar', parte, function(error, resultado) {

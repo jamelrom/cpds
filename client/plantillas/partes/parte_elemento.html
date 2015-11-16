@@ -9,5 +9,19 @@
          <strong>{{alumno}}</strong>
             impuesto por <strong>{{profesor}}</strong>
             {{fechaYHoraFormateada fecha}}
+        {{#if sancionado}}
+          <span class="label label-danger">sancionado</span>
+        {{/if}}
        </a>
+</template>
+
+<template name="parteElementoSimple">
+  <a type="button" class="list-group-item" data-toggle="tooltip" title="{{comentario}}" >
+     <span class='label
+    {{#if quegrave 'Leve'}}label-success{{/if}}
+    {{#if quegrave 'Grave'}}label-warning{{/if}}
+    {{#if quegrave 'Muy Grave'}}label-danger{{/if}}
+    '>{{gravedad}}</span><strong>{{profesor}}</strong>
+       {{fechaYHoraFormateada fecha}}
+  </a>
 </template>

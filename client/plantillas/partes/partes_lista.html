@@ -2,6 +2,8 @@
   <div class="list-group">
     {{#each partes}}
       {{> parteElemento}}
+    {{else}}
+      <center><h1>Aún no hay ningún Parte</h1></center>
     {{/each}}
   </div>
 </template>

@@ -1,0 +1,9 @@
+<template name="sancionElemento">
+      <a type="button" class="list-group-item" data-toggle="tooltip" title="{{comentario}}" href="{{pathFor 'sancionPagina'}}/">
+
+         <strong>{{curso}}</strong> a
+         <strong>{{alumno}}</strong>
+         {{fechaFormateada fechainicio}} - {{fechaFormateada fechafin}}
+         <span class="label label-danger">{{dias}}</span>
+       </a>
+</template>

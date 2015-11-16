@@ -33,7 +33,7 @@ if (Meteor.users.find().count() === 0) {
       profile: { name: usuarios[i].nombre }
     });
     if (usuarios[i].roles.length > 0) {
-      Roles.addUsersToRoles(usuarios[i].id,usuarios[i].roles);//, 'default-group');
+      Roles.addUsersToRoles(usuarios[i].id,usuarios[i].roles);
     }
   }
 //CURSOS
@@ -63,7 +63,8 @@ if (Meteor.users.find().count() === 0) {
         profesor_id: Meteor.users.findOne({username:partes[i].profesor})._id,
         profesor: Meteor.users.findOne({username:partes[i].profesor}).profile.name,
         gravedad: partes[i].gravedad,
-        comentario: partes[i].comentario
+        comentario: partes[i].comentario,
+        sancionado: false
       });
   }
 

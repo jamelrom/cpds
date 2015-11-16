@@ -41,6 +41,13 @@ Meteor.publish('profesores', function() {
     if (user && Roles.userIsInRole(user, ['jefe','admin']))
       return Meteor.users.find();
 });
+
+Meteor.publish('sanciones', function() {
+    var user = Meteor.users.findOne(this.userId);
+
+    if (user && Roles.userIsInRole(user, ['jefe','admin']))
+      return Sanciones.find();
+});
 /*publicaciones parciales
 return Posts.find({}, {fields: {
     date: false

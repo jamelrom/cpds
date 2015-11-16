@@ -1,0 +1,11 @@
+<template name="sancionesLista">
+  <div class="list-group">
+
+    {{#each sanciones}}
+      {{> sancionElemento}}
+    {{else}}
+      <center><h1>Aún no hay ninguna Sanción</h1></center>
+    {{/each}}
+
+  </div>
+</template>

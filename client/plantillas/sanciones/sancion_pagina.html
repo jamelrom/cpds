@@ -1,0 +1,46 @@
+<template name="sancionPagina">
+    <div class="btn-group" role="group" >
+      <div class="input-group disabled">
+        <label class="control-label" for="curso">Curso:</label>
+        <button type="button" class="btn btn-default disabled" name="curso">{{sancion.curso}}</button>
+        <label class="control-label" for="alumno">Alumno:</label>
+        <button type="button" class="btn btn-default disabled" name="alumno">{{sancion.alumno}}</button>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <form role="form">
+
+        <div class="input-group date disabled">
+          <label class="control-label" for="fechainicio">Fecha Inicio:
+            <input type="text" class="form-control" name="fechainicio"  id="fechainicio"  value="{{fechaFormateada sancion.fechainicio}}" disabled >
+          </label>
+          <label class="control-label" for="fechafin">Fecha Fin:
+            <input type="text" class="form-control" name="fechafin"  id="fechafin"  value="{{fechaFormateada sancion.fechafin}}" disabled >
+          </label>
+          <label class="control-label" for="curso">Dias lectivos:
+            <input type="text" class="form-control" name="curso"  value="{{sancion.dias}}" disabled>
+          </label>
+        </div>
+
+        <label class="control-label" for="curso">Partes motivo de la sanción:</label>
+        <div class="list-group">
+          {{#each partes}}
+            {{>parteElementoSimple}}
+          {{/each}}
+        </div>
+
+          <div class="form-group">
+            <label class="control-label" for="comentario">Comentario:</label>
+            <div class="controls">
+              <textarea name="comentario" id="comentario" placeholder="Comentario" value={{sancion.comentario}} class="form-control" autofocus disabled></textarea>
+            </div>
+          </div>
+
+            <a type="button" href="edit/" class="btn btn-primary editar" >Editar</a>
+            <input type="submit" value="Borrar" class="btn btn-primary borrar"/>
+
+      </form>
+    </div>
+  </div>
+  </template>

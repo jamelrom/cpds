@@ -15,8 +15,10 @@
   </div>
 </template>
 <template name="sancionNuevaCursoAlumno">
-  <div class="btn-group" role="group" >
+  <div class="input-group" role="group" >
+    <label class="control-label" for="curso">Curso:</label>
     <button type="button" class="btn btn-default disabled">{{curso.curso}}</button>
+    <label class="control-label" for="alumno">Alumno:</label>
     <button type="button" class="btn btn-default disabled" id="grave">{{alumno.nombre}}</button>
   </div>
 
@@ -25,14 +27,18 @@
   <form role="form">
 
   <div class="input-group date">
-    <label class="control-label" for="fechainicio">Fecha Inicio:</label>
-    <input type="text" class="form-control fecha" name="fechainicio"  id="fechainicio"   ><br>
-    <label class="control-label" for="fechafin">Fecha Fin:</label>
-    <input type="text" class="form-control fecha" name="fechafin"  id="fechafin"   ><br>
+    <label class="control-label" for="fechainicio">Fecha Inicio:
+    <input type="text" class="form-control fecha" name="fechainicio"  id="fechainicio"   ></label>
+    <label class="control-label" for="fechafin">Fecha Fin:
+    <input type="text" class="form-control fecha" name="fechafin"  id="fechafin"   ></label>
+    <label class="control-label" for="dias">Días lectivos:
+    <input type="text" name="dias" id="dias"  class="form-control" ></label>
   </div>
+  <div class="form-group">
+    <label class="control-label" for="listapartes">Partes a sancionar:</label>
     <select id='listapartes' class="selectpicker show-tick" multiple data-selected-text-format="count>0" title='Partes a sancionar...'>
       {{#each partes}}
-        <option name="options" data-content="
+        <option name="options" value="{{_id}}" data-content="
           <span class='label
           {{#if quegrave 'Leve'}}label-success{{/if}}
           {{#if quegrave 'Grave'}}label-warning{{/if}}
@@ -47,12 +53,13 @@
       <option>Ketchup</option>
       <option>Barbecue</option>-->
     </select>
-      <div class="form-group">
-        <label class="control-label" for="comentario">Comentario:</label>
-        <div class="controls">
-          <textarea name="comentario" id="comentario" placeholder="Comentario" class="form-control" autofocus ></textarea>
-        </div>
-      </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="comentario">Comentario:</label>
+    <div class="controls">
+      <textarea name="comentario" id="comentario" placeholder="Comentario" class="form-control" autofocus ></textarea>
+    </div>
+  </div>
 
       <input type="submit" value="Imponer sanción" class="btn btn-primary"/>
   </form>

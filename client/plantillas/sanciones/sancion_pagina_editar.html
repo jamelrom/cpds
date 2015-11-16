@@ -1,0 +1,68 @@
+
+<template name="sancionPaginaEditar">
+  <div class="btn-group" role="group" >
+    <div class="input-group disabled">
+      <label class="control-label" for="curso">Curso:</label>
+      <button type="button" class="btn btn-default disabled" name="curso">{{sancion.curso}}</button>
+      <label class="control-label" for="alumno">Alumno:</label>
+      <button type="button" class="btn btn-default disabled" name="alumno">{{sancion.alumno}}</button>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+  <div class="panel-body">
+  <form role="form">
+
+    <div class="input-group date disabled">
+      <label class="control-label" for="fechainicio">Fecha Inicio:
+        <input type="text" class="form-control fecha" name="fechainicio"  id="fechainicio"  value="{{fechaFormateada sancion.fechainicio}}">
+      </label>
+      <label class="control-label" for="fechafin">Fecha Fin:
+        <input type="text" class="form-control fecha" name="fechafin"  id="fechafin"  value="{{fechaFormateada sancion.fechafin}}">
+      </label>
+      <label class="control-label" for="dias">Dias lectivos:
+        <input type="text" class="form-control" name="dias"  id="dias" value="{{sancion.dias}}">
+      </label>
+    </div>
+
+  <div class="form-group">
+    <label class="control-label" for="listapartes">Partes a sancionar:</label>
+    <select id='listapartes' class="selectpicker show-tick" multiple data-selected-text-format="count>0" title='Partes a sancionar...'>
+      {{#each partes}}
+      <option name="options" value="{{_id}}" data-content="
+        <span class='label
+        {{#if quegrave 'Leve'}}label-success{{/if}}
+        {{#if quegrave 'Grave'}}label-warning{{/if}}
+        {{#if quegrave 'Muy Grave'}}label-danger{{/if}}
+        '>{{gravedad}}</span><strong>{{profesor}}</strong>
+           {{fechaYHoraFormateada fecha}}
+        <span class='label label-default'
+           data-toggle='tooltip' title='{{comentario}}'>Comentario...</span>
+        " checked>{{_id}}</option>
+      {{/each}}
+      {{#each otrospartes}}
+      <option name="options" value="{{_id}}" data-content="
+        <span class='label
+        {{#if quegrave 'Leve'}}label-success{{/if}}
+        {{#if quegrave 'Grave'}}label-warning{{/if}}
+        {{#if quegrave 'Muy Grave'}}label-danger{{/if}}
+        '>{{gravedad}}</span><strong>{{profesor}}</strong>
+           {{fechaYHoraFormateada fecha}}
+        <span class='label label-default'
+           data-toggle='tooltip' title='{{comentario}}'>Comentario...</span>
+        ">{{_id}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="comentario">Comentario:</label>
+    <div class="controls">
+      <textarea name="comentario" id="comentario" placeholder="Comentario" class="form-control" autofocus >{{sancion.comentario}}</textarea>
+    </div>
+  </div>
+
+      <input type="submit" value="Editar" class="btn btn-primary"/>
+  </form>
+</div>
+</div>
+</template>

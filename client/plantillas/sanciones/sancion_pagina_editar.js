@@ -1,4 +1,4 @@
-Template.sancionNuevaCursoAlumno.rendered=function(){
+Template.sancionPaginaEditar.rendered=function(){
   $('.fecha').datepicker({
       format: "dd/mm/yyyy",
     language: "es",
@@ -7,14 +7,12 @@ Template.sancionNuevaCursoAlumno.rendered=function(){
     autoclose: true,
     todayHighlight: true});
 
-  $('#fechainicio').datepicker("setDate", new Date());
-  $('#fechafin').datepicker("setDate", new Date());
-
   $('select').selectpicker({countSelectedText: '{0} de {1} seleccionados',
                           selectedTextFormat:'count'});
-
+  $('#listapartes').selectpicker('val', this.data.sancion.partes);
 }
-Template.sancionNuevaCursoAlumno.events({
+
+Template.sancionPaginaEditar.events({
   'submit form': function(e) {
     e.preventDefault();
 
@@ -32,25 +30,31 @@ Template.sancionNuevaCursoAlumno.events({
     if(!$('#dias').val())
       return alert("Debe introducir los días lectivos que tendrá la sanción");
     sancion={
-        curso_id: this.curso._id,
-        curso: this.curso.curso,
-        alumno_id: this.alumno._id,
-        alumno: this.alumno.nombre,
+        curso_id: this.sancion.curso_id,
+        curso: this.sancion.curso,
+        alumno_id: this.sancion.alumno_id,
+        alumno: this.sancion.alumno,
         fechainicio: fechainicio.format(),
         fechafin: fechafin.format(),
         dias: $('#dias').val(),
         partes: $('#listapartes').val(),
         comentario: $('#comentario').val()};
-    
-    Sanciones.insert(sancion, function(error, result) {
-      if(error)
-        alert("No se ha insertado la sanción: "+error);
-      else {
-        Router.go("/sancion/todos/")
-        }
-    });
 
-    busqueda={_id: {$in: $('#listapartes').val()}};
+
+    Sanciones.update(this.sancion._id, {$set: sancion});
+
+    //asigno los antiguos partes de la sancion como no sancionados
+    busqueda={_id: {$in: this.sancion.partes}};
+    actualizacion= {$set: {
+                          sancionado: false}};
+    param={busqueda:busqueda,actualizacion:actualizacion};
+    Meteor.call('parteActualizar',param , function(error, resultado) {
+          if (error)
+            return alert(error.reason);
+        });
+
+    //y marco los nuevos partes de la sanción como sancionados
+    busqueda={_id: {$in: sancion.partes}};
     actualizacion= {$set: {
                           sancionado: true}};
     param={busqueda:busqueda,actualizacion:actualizacion};
@@ -58,6 +62,13 @@ Template.sancionNuevaCursoAlumno.events({
           if (error)
             return alert(error.reason);
         });
+
+
+
+
+
+    Router.go('/sancion/'+ this.sancion._id+'/');
+
 
 
   }

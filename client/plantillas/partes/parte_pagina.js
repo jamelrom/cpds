@@ -3,7 +3,7 @@ Template.partePagina.helpers({
     var user = Meteor.userId();
     if (user && Roles.userIsInRole(user, ['jefe']))
       return true;
-    else if(user && user===this.profesor_id)
+    else if(user && user===this.profesor_id && this.sancionado===false)
       return true;
     else
       return false;
