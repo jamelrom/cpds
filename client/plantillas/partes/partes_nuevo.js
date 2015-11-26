@@ -1,6 +1,6 @@
 Template.partesNuevoCursoAlumno.helpers({
   horaactual: function(){
-     return moment().format('hh')+":"+moment().format('mm');
+     return moment().format('HH')+":"+moment().format('mm');
    }
 });
 
@@ -22,13 +22,16 @@ Template.partesNuevoCursoAlumno.events({
       comentario: $(e.target).find('[name=comentario]').val(),
       sancionado:false
     };
-    //console.log(parte.gravedad);
-    Meteor.call('parteInsertar', parte, function(error, resultado) {
-          if (error)
-            return alert(error.reason);
+    if(parte.comentario)
+      Meteor.call('parteInsertar', parte, function(error, resultado) {
+            if (error)
+              return alert(error.reason);
 
-          Router.go('partePagina', {_id: resultado._id});
-        });
+            Router.go('partePagina', {_id: resultado._id});
+          });
+    else {
+      alert("Debe introducir un comentario asociado al parte");
+    }
   }
 });
 
@@ -39,13 +42,15 @@ Template.partesNuevoCursoAlumno.rendered=function(){
     todayBtn: "linked",
     weekStart: 1,
     autoclose: true,
-    todayHighlight: true});
+    todayHighlight: true,
+    disableTouchKeyboard: true});
 
   $('#fecha').datepicker("setDate", new Date());
 
   $('.clockpicker').clockpicker({
         autoclose:true,
-        'default':'now'
+        'default':'now',
+        ignoreReadonly: true
       });
 
   //Por defecto se le presentará al usuario el botón de leve activado

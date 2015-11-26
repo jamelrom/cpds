@@ -38,7 +38,7 @@
             <span class="label label-danger">El parte ha sido sancionado</span><br>
           {{/if}}
 
-          {{#if puedeEditar}}
+          {{#if puedeEditar}} <!--Este ayudante nos comprueba dependiendo del usuario que sea si puede editar el parte, para mostrarle los botones, además el control de inserción esta también en los allow de las colecciones-->
             <a href="{{pathFor 'partePaginaEditar'}}" class="btn btn-primary editar" >Editar</a>
             <input type="submit" value="Borrar" class="btn btn-primary borrar"/>
           {{/if}}

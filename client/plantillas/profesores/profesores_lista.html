@@ -2,6 +2,8 @@
   <div class="list-group">
     {{#each profesores}}
       {{> profesorElemento}}
+    {{else}}
+      <center><h1>Aún no hay ningún Profesor</h1></center>
     {{/each}}
   </div>
 </template>

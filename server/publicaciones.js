@@ -35,6 +35,7 @@ Meteor.publish('partes', function() {
 
 });
 
+//publicamos la coleccion profesores y sanciones solo a los jefe y administradores
 Meteor.publish('profesores', function() {
     var user = Meteor.users.findOne(this.userId);
 
@@ -48,8 +49,3 @@ Meteor.publish('sanciones', function() {
     if (user && Roles.userIsInRole(user, ['jefe','admin']))
       return Sanciones.find();
 });
-/*publicaciones parciales
-return Posts.find({}, {fields: {
-    date: false
-  }});
-  */

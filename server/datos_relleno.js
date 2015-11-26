@@ -1,3 +1,5 @@
+
+//estos datos se insertan cuando la bbdd esta vacia y son unos datos de prueba
 if (Meteor.users.find().count() === 0) {
   var usuarios = [
       {nombre:"Administrador",usuario:"admin",contrasenia:"admin",roles:['admin']},
@@ -23,7 +25,16 @@ if (Meteor.users.find().count() === 0) {
       {curso: '1º ESO B', alumno:"Antonio Carmona Pérez",fecha:"2015-11-03T12:54:00+01:00", profesor: 'virgi',gravedad: 'Muy Grave',comentario: 'Ha pegado un puñetazo a otro alumno'},
       {curso: '1º ESO B', alumno:"Saray González Fernández",fecha:"2015-11-01T12:54:00+01:00", profesor: 'fran',gravedad: 'Leve',comentario: 'No ha traido las tareas de casa'},
       {curso: '1º ESO A', alumno:"Ermenegildo Perez Romero",fecha:"2015-11-02T12:54:00+01:00", profesor: 'fran',gravedad: 'Grave',comentario: 'Ha insultado al profesor'}
-    ]
+    ];
+    var sanciones=[
+      {curso: "1º ESO A",
+      alumno: "Ermenegildo Perez Romero",
+      comentario: "Este alumno va a estar limpiando el patio 2 semanas",
+      partes: [1,5],
+      dias: 4,
+      fechainicio:   "2015-11-04T00:00:00+01:00",
+      fechafin: "2015-11-21T00:00:00+01:00"}
+    ];
 
 //AÑADIR USUARIO
   for (i = 0; i < usuarios.length; i++) {
@@ -57,15 +68,37 @@ if (Meteor.users.find().count() === 0) {
     Partes.insert({
         curso_id: Cursos.findOne({curso:partes[i].curso})._id,
         curso: partes[i].curso,
-        fecha: partes[i].fecha,
         alumno_id: Alumnos.findOne({nombre: partes[i].alumno})._id,
-        alumno: Alumnos.findOne({nombre: partes[i].alumno}).nombre,
+        alumno: partes[i].alumno,
         profesor_id: Meteor.users.findOne({username:partes[i].profesor})._id,
         profesor: Meteor.users.findOne({username:partes[i].profesor}).profile.name,
         gravedad: partes[i].gravedad,
         comentario: partes[i].comentario,
-        sancionado: false
+        fecha: partes[i].fecha,
+        sancionado:false
       });
   }
+//SANCIONES
+for (i = 0; i < sanciones.length; i++) {
+  tmp=[];
+  for(j=0;j<sanciones[i].partes.length; j++){
+    var idparte=Partes.find().fetch()[sanciones[i].partes[j]]._id;
+    tmp.push(idparte);
+    Partes.update(idparte, {$set :{sancionado:true}});
+  }
+
+
+  Sanciones.insert({
+      curso_id: Cursos.findOne({curso:sanciones[i].curso})._id,
+      curso: partes[i].curso,
+      alumno_id: Alumnos.findOne({nombre: sanciones[i].alumno})._id,
+      alumno: sanciones[i].alumno,
+      comentario: sanciones[i].comentario,
+      dias: sanciones[i].dias,
+      fechainicio: sanciones[i].fechainicio,
+      fechafin: sanciones[i].fechafin,
+      partes: tmp
+    });
+}
 
 }

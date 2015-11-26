@@ -28,7 +28,7 @@
   <div class="form-group">
     <label class="control-label" for="listapartes">Partes a sancionar:</label>
     <select id='listapartes' class="selectpicker show-tick" multiple data-selected-text-format="count>0" title='Partes a sancionar...'>
-      {{#each partes}}
+      {{#each partes}} <!--aqui tenemos todos los partes de la sanción actual-->
       <option name="options" value="{{_id}}" data-content="
         <span class='label
         {{#if quegrave 'Leve'}}label-success{{/if}}
@@ -40,7 +40,7 @@
            data-toggle='tooltip' title='{{comentario}}'>Comentario...</span>
         " checked>{{_id}}</option>
       {{/each}}
-      {{#each otrospartes}}
+      {{#each otrospartes}}<!--y aqui los partes no sancionados del alumno de la sancion-->
       <option name="options" value="{{_id}}" data-content="
         <span class='label
         {{#if quegrave 'Leve'}}label-success{{/if}}

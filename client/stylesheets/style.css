@@ -1,0 +1,7 @@
+
+/*esta directiva permite representar los input con readonly, como si estuviesen habilitados, ya que usamos dicha propiedad
+en los input de horas para que en los dispositivos moviles no se despliegue el teclado tactil, ya que usamos el control de rueda
+para elegir la hora*/
+input[readonly].form-control {
+    background-color: #fff;
+}

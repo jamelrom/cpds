@@ -3,16 +3,17 @@ Template.partePaginaEditar.rendered=function(){
       format: "dd/mm/yyyy",
     language: "es",
     todayBtn: "linked",
-    weekStart: 1,
-    autoclose: true,
-    todayHighlight: true});
+    weekStart: 1, //la semana empieza en lunes
+    autoclose: true, //cuando pulse una fecha se cierra automaticamente
+    todayHighlight: true, //aparece el dia actual resaltado
+    disableTouchKeyboard: true}); //desactiva el teclado en los dispositivos moviles
 
     $('.clockpicker').clockpicker({
       autoclose:true,
       'default':'now'
     });
 
-    var tipo=("#"+this.data.gravedad).split(' ').join('');//le quitamos los espacios al tipo de gravedad
+    var tipo=("#"+this.data.gravedad).split(' ').join('');//le quitamos los espacios al tipo de gravedad para el tipo muy grave
 
     $(tipo).click();
 

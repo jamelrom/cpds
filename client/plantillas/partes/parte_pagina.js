@@ -1,4 +1,6 @@
 Template.partePagina.helpers({
+  //Este ayudante nos permite identificar quien puede editar un parte, el jefe de estudios puede editar siempre,
+  //el resto de profesores siempre que sean los autores del parte y no este ya sancionado
   puedeEditar: function(){
     var user = Meteor.userId();
     if (user && Roles.userIsInRole(user, ['jefe']))

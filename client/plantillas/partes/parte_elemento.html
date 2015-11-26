@@ -1,5 +1,7 @@
 <template name="parteElemento">
       <a type="button" class="list-group-item" data-toggle="tooltip" title="{{comentario}}" href="{{pathFor 'partePagina'}}">
+        <!-- en este elemento hemos creado una etiqueta que tomara el color verde cuando sea leve, amarillo cuando sea grave y roja cuando sea muy grave para
+      ello llamamos al ayudante de plantilla quegrave que nosotros hemos creado y elegimos una clase css u otra en funcion de su valor-->
          <span class="label
          {{#if quegrave 'Leve'}}label-success{{/if}}
          {{#if quegrave 'Grave'}}label-warning{{/if}}
@@ -8,14 +10,14 @@
          <strong>{{curso}}</strong> a
          <strong>{{alumno}}</strong>
             impuesto por <strong>{{profesor}}</strong>
-            {{fechaYHoraFormateada fecha}}
-        {{#if sancionado}}
+            {{fechaYHoraFormateada fecha}} <!--el ayudante de plantilla fechaYhora formateada cambia el tipo de dato nativo de la base de datos en formato UTC al tipo dd/mm/yyy HH:mm -->
+        {{#if sancionado}}<!--si el parte ya esta sancionado informamos de ello con una etiqueta roja-->
           <span class="label label-danger">sancionado</span>
         {{/if}}
        </a>
 </template>
 
-<template name="parteElementoSimple">
+<template name="parteElementoSimple"> <!-- un elemento de parte más simple que utilizamos en algunas plantillas-->
   <a type="button" class="list-group-item" data-toggle="tooltip" title="{{comentario}}" >
      <span class='label
     {{#if quegrave 'Leve'}}label-success{{/if}}

@@ -5,7 +5,8 @@ Template.sancionNuevaCursoAlumno.rendered=function(){
     todayBtn: "linked",
     weekStart: 1,
     autoclose: true,
-    todayHighlight: true});
+    todayHighlight: true,
+    disableTouchKeyboard: true});
 
   $('#fechainicio').datepicker("setDate", new Date());
   $('#fechafin').datepicker("setDate", new Date());
@@ -41,7 +42,7 @@ Template.sancionNuevaCursoAlumno.events({
         dias: $('#dias').val(),
         partes: $('#listapartes').val(),
         comentario: $('#comentario').val()};
-    
+
     Sanciones.insert(sancion, function(error, result) {
       if(error)
         alert("No se ha insertado la sanción: "+error);

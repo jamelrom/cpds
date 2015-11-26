@@ -5,7 +5,8 @@ Template.sancionPaginaEditar.rendered=function(){
     todayBtn: "linked",
     weekStart: 1,
     autoclose: true,
-    todayHighlight: true});
+    todayHighlight: true,
+    disableTouchKeyboard: true});
 
   $('select').selectpicker({countSelectedText: '{0} de {1} seleccionados',
                           selectedTextFormat:'count'});
@@ -63,13 +64,6 @@ Template.sancionPaginaEditar.events({
             return alert(error.reason);
         });
 
-
-
-
-
     Router.go('/sancion/'+ this.sancion._id+'/');
-
-
-
   }
 });

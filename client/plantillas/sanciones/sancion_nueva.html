@@ -1,16 +1,24 @@
 <template name="sancionNueva">
-<div class="list-group">
-    <center><h3>Selecciona un curso</h3></center>
+  <div class="list-group">
+    {{#if cursos}}
+      <center><h3>Selecciona un curso</h3></center>
+    {{/if}}
     {{#each cursos}}
       {{> cursoElemento}}
+    {{else}}
+      <center><h3>Aún no hay cursos en el sistema</h3></center>
     {{/each}}
   </div>
 </template>
 <template name="sancionNuevaCurso">
   <div class="list-group">
-    <center><h3>Selecciona un alumno</h3></center>
+    {{#if cursos}}
+      <center><h3>Selecciona un alumno</h3></center>
+    {{/if}}
     {{#each alumnos}}
       {{> alumnoElemento}}
+    {{else}}
+      <center><h3>En este curso no hay alumnos con partes no sancionados</h3></center>
     {{/each}}
   </div>
 </template>
