@@ -5,3 +5,15 @@ para elegir la hora*/
 input[readonly].form-control {
     background-color: #fff;
 }
+
+.modal-dialog {
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+  padding: 0;
+}
+
+.modal-content {
+  height: 100%;
+  border-radius: 0;
+}
